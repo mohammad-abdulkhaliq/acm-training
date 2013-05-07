@@ -1,0 +1,13 @@
+Problem: 250
+Test Case: 7
+Succeeded: No
+Execution Time: 4 ms
+Args:
+{{625, 235, 57, 52, 438, 504, 884, 910}, {302, 446, 398, 617, 264, 27, 581, 295}, 6276}
+
+Expected:
+4
+
+Received:
+5
+
