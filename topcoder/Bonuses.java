@@ -1,5 +1,8 @@
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Bonuses {
 	
@@ -19,47 +22,73 @@ public class Bonuses {
 			percent[i] = (int)Math.floor(tmp);
 		}
 		int bonus = (int) Math.ceil(left_over);
-		int [] tmp_points = copyArr(points);
+		System.out.println(bonus);
+		int [] tmp_points = copyArr(percent);
+		Map<Integer, ArrayList<Integer>> map = getMap(percent);
 		Arrays.sort(tmp_points);
+		printArr(tmp_points);
+		printArr(percent);
 		for(int i = tmp_points.length - 1; i >= 0; i--){
-			int key = find(points, tmp_points[i]);
-			
-			if (bonus != 0){
-				percent[key]++;
+			ArrayList<Integer> indices = find(map, tmp_points[i]);
+			System.out.println(indices);
+			for(int j = 0; j < indices.size(); j++) {
+				if(bonus != 0)
+					percent[indices.get(j)]++;
+				else { 
+					printArr(percent);
+					return percent;
+				}
 				bonus--;
 			}
-			else break;
 		}
 		return percent;
 	}
 
 	public static void main (String [] args) { 
 	
-		int [] x = getDivision(new int[]{5,5,5,5,5,5});
-		System.out.println(x[0] + " " + x[1] + " " + x[2]);
 	}
 
-	public static int find(int [] src, int value) { 
-
-		for(int i = 0; i < src.length; i++) {
-			if(value == src[last]) {
-				last++;
-				return last-1;
-			}
-			if(value == src[i]) {
-				return i;
-			}
-			
-		}
-		return -1;
+	public static ArrayList<Integer> find(Map<Integer, ArrayList<Integer>> map, int value) { 
+		
+		return map.get(value);
 	}
 	public static int [] copyArr(int [] src) { 
 		
 		int [] dest = new int[src.length];
-		for(int i = 0; i < src.length; i++)
-			dest[i] = src[i];
+		for(int i = 0; i < src.length; i++) {
+			if(!contains(dest, src[i]))
+				dest[i] = src[i];
+		}
 		return dest;
 	}
 	
-
+	public static Map<Integer, ArrayList<Integer>> getMap(int [] src) { 
+		
+		Map<Integer, ArrayList<Integer>> myMap = new HashMap<Integer, ArrayList<Integer>>();
+		for(int i = 0; i < src.length; i++) { 
+			if(myMap.containsKey(src[i])) { 
+				myMap.get(src[i]).add(i);
+				continue;
+			}
+			
+			myMap.put(src[i], new ArrayList<Integer>());
+			myMap.get(src[i]).add(i);
+		}
+		return myMap;	
+	}
+	
+	public static boolean contains (int [] src, int val) { 
+		
+		for(int i : src)
+			if(i == val)
+				return true;
+		return false;
+	}
+	
+	public static void printArr(int [] src) { 
+		
+		for(int i : src)
+			System.out.print(i + " ");
+		System.out.println();
+	}
 }
