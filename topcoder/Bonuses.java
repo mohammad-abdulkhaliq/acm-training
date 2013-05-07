@@ -23,8 +23,8 @@ public class Bonuses {
 		}
 		int bonus = (int) Math.ceil(left_over);
 		System.out.println(bonus);
-		int [] tmp_points = copyArr(percent);
-		Map<Integer, ArrayList<Integer>> map = getMap(percent);
+		int [] tmp_points = copyArr(points);
+		Map<Integer, ArrayList<Integer>> map = getMap(points);
 		Arrays.sort(tmp_points);
 		printArr(tmp_points);
 		printArr(percent);
@@ -62,17 +62,17 @@ public class Bonuses {
 		return dest;
 	}
 	
-	public static Map<Integer, ArrayList<Integer>> getMap(int [] src) { 
+	public static Map<Integer, ArrayList<Integer>> getMap(int [] points) { 
 		
 		Map<Integer, ArrayList<Integer>> myMap = new HashMap<Integer, ArrayList<Integer>>();
-		for(int i = 0; i < src.length; i++) { 
-			if(myMap.containsKey(src[i])) { 
-				myMap.get(src[i]).add(i);
+		for(int i = 0; i < points.length; i++) { 
+			if(myMap.containsKey(points[i])) { 
+				myMap.get(points[i]).add(i);
 				continue;
 			}
 			
-			myMap.put(src[i], new ArrayList<Integer>());
-			myMap.get(src[i]).add(i);
+			myMap.put(points[i], new ArrayList<Integer>());
+			myMap.get(points[i]).add(i);
 		}
 		return myMap;	
 	}
