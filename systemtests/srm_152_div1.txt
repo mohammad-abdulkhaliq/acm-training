@@ -1,0 +1,20 @@
+Problem: 250
+Test Case: 8
+Succeeded: No
+Execution Time: 0 ms
+Args:
+{4, 4, 100}
+
+Expected:
+{4, 5, 12, 13, 20, 21, 28, 29, 36, 37, 44, 45, 52, 53, 60, 61, 68, 69, 76, 77, 84, 85, 92, 93, 100}
+
+Received:
+java.lang.ArrayIndexOutOfBoundsException: 25
+	at LeaguePicks.returnPicks(LeaguePicks.java:34)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:585)
+	at com.topcoder.services.tester.java.TestProcess$Runner.run(TestProcess.java:386)
+
+
